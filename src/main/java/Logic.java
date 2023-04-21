@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Objects;
 
 public class Logic {
@@ -24,8 +25,10 @@ public class Logic {
                 temp[b++] = value;
             }
         }
-        Arrays.sort(student);
-        return Arrays.copyOf(temp, b);
+
+        temp = Arrays.copyOf(temp, b);
+        Arrays.sort(temp, Comparator.comparing(Student::getFamil).thenComparing(Student::getImy));
+        return temp;
     }
 
     public Student [] printStudent(Student[] student) {
