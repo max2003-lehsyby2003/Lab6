@@ -31,23 +31,18 @@ public class IOFile {
     public Student[] readFromFile(String file) {
         Student[] students = new Student[100];
         int i = 0;
-
         Path path = Paths.get(file);
-
         try {
             Scanner scanner = new Scanner(path);
 
                 while (scanner.hasNext()) {
                     String str = scanner.nextLine();
                     students[i] = Student.parse(str);
-
                     i++;
                 }
-
             scanner.close();
         } catch (IOException ignored) {
         }
-
         students = (Student []) Arrays.copyOf(students, i);
         return students;
     }

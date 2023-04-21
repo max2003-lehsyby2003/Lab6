@@ -3,6 +3,8 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Scanner;
 
+import static java.lang.System.exit;
+
 public class Main {
     public static void main(String[] args) {
         new Main().run();
@@ -49,16 +51,19 @@ public class Main {
                     ioFile.writeFile(file , students);
                     break;
                 case 3:
-
+                   // sc = new Scanner(System.in);
                     System.out.println("Вы выбрали пункт 3");
                     System.out.println("введіть назву файлу");
-                    file = sc.next();
+                    file = sc.nextLine();
                     students = ioFile.readFromFile(file);
-//                    System.out.println("Введіть назву факультету");
-//                    fakul = sc.next();
-                    System.out.println("------Студенти факультету Програмна інженерія----");
 
-                    logic.printStudent(logic.filterFakultStudent(students, "Програмна інженерія"));
+                    System.out.println("Введіть назву факультету");
+
+                    fakul = sc.nextLine();
+                    sc.reset();
+                    System.out.println("------Студенти факультету Програмна інженерія----");
+                    System.out.println(fakul);
+                    logic.printStudent(logic.filterFakultStudent(students, fakul));
 
                     break;
                 case 4:
@@ -68,10 +73,10 @@ public class Main {
                     System.out.println("введіть назву файлу");
                     file = sc.next();
                     students = ioFile.readFromFile(file);
-//                    System.out.println("Введіть дату");
-//                    date = LocalDate.parse(sc.next());
+                    System.out.println("Введіть дату год-месяц-день");
+                    date = LocalDate.parse(sc.next());
 
-                    logic.printStudent(logic.filterDataNarodg(students, LocalDate.of(2000, 1, 1)));
+                    logic.printStudent(logic.filterDataNarodg(students, date));
 
                     break;
                 case 5:
@@ -81,10 +86,10 @@ public class Main {
                     file = sc.next();
                     students = ioFile.readFromFile(file);
 
-//                    System.out.println("Введіть назву группи");
-//                    group = sc.get();
+                    System.out.println("Введіть назву группи");
+                    group = sc.next();
 
-                    logic.printStudent(logic.printGroupStudent(students, "1147"));
+                    logic.printStudent(logic.printGroupStudent(students, group));
 
                     break;
                 case 6:
@@ -97,6 +102,7 @@ public class Main {
                     break;
                 case 7:
                     System.out.println("Выход из программы");
+                    exit(0);
                 default:
                     System.out.println("Неверный выбор. Попробуйте еще раз.");
             }
